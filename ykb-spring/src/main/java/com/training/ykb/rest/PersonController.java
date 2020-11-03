@@ -17,7 +17,7 @@ import com.training.ykb.Person;
 
 
 @RestController
-@RequestMapping("/person")
+@RequestMapping("/per")
 public class PersonController {
 
     @GetMapping("/hello")

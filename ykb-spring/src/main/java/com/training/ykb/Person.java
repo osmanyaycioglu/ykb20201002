@@ -57,16 +57,18 @@ public class Person {
         return this.name;
     }
 
-    public void setName(final String nameParam) {
+    public Person setName(final String nameParam) {
         this.name = nameParam;
+        return this;
     }
 
     public String getSurname() {
         return this.surname;
     }
 
-    public void setSurname(final String surnameParam) {
+    public Person setSurname(final String surnameParam) {
         this.surname = surnameParam;
+        return this;
     }
 
 
@@ -80,8 +82,9 @@ public class Person {
         return this.city;
     }
 
-    public void setCity(final String cityParam) {
+    public Person setCity(final String cityParam) {
         this.city = cityParam;
+        return this;
     }
 
 
@@ -90,8 +93,9 @@ public class Person {
     }
 
 
-    public void setPersonId(final Long personIdParam) {
+    public Person setPersonId(final Long personIdParam) {
         this.personId = personIdParam;
+        return this;
     }
 
 
@@ -100,8 +104,9 @@ public class Person {
     }
 
 
-    public void setAge(final Integer ageParam) {
+    public Person setAge(final Integer ageParam) {
         this.age = ageParam;
+        return this;
     }
 
 

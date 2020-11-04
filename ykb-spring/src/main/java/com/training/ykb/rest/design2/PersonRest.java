@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.training.ykb.Person;
 
-@RestController
+@RestController("design2PersonRest")
 @RequestMapping("/api2/v1/person/provision")
 public class PersonRest {
 

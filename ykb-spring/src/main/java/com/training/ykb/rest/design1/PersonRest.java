@@ -1,6 +1,10 @@
 package com.training.ykb.rest.design1;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Positive;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -16,13 +20,18 @@ import com.training.ykb.services.IPersonProvision;
 
 @RestController
 @RequestMapping("/api/v1/person/provision")
+@Validated
 public class PersonRest {
 
     @Autowired
     private IPersonProvision ipp;
 
     @PutMapping
-    public String insert(@RequestBody final Person person) {
+    public String insert(@NotNull @Validated @RequestBody final Person person) {
+        int ageLoc = person.getAge();
+        if (ageLoc == 30) {
+            throw new IllegalArgumentException("Person age doğru değil");
+        }
         return this.ipp.add(person);
     }
 
@@ -32,7 +41,7 @@ public class PersonRest {
     }
 
     @GetMapping
-    public Person select(@RequestParam("personId") final long personId) {
+    public Person select(@Positive @NotNull @RequestParam("personId") final Long personId) {
         return this.ipp.search(personId);
     }
 

@@ -1,15 +1,38 @@
 package com.training.ykb;
 
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
+
+import com.training.ykb.validation.StartWith;
 
 @XmlRootElement
 public class Person {
 
-    private long   personId;
-    private String name;
-    private String surname;
-    private int    age;
-    private String city;
+
+    private Long    personId;
+
+    @NotEmpty
+    @Size(max = 50, min = 2)
+    @StartWith("test")
+    private String  name;
+
+    @NotEmpty
+    @Size(max = 50, min = 2)
+    private String  surname;
+
+    @NotNull
+    @Max(150)
+    @Min(18)
+    private Integer age;
+
+    @NotEmpty
+    @Size(max = 20, min = 2)
+    @StartWith("sehir")
+    private String  city;
 
 
     public Person() {
@@ -46,26 +69,12 @@ public class Person {
         this.surname = surnameParam;
     }
 
-    public int getAge() {
-        return this.age;
-    }
-
-    public void setAge(final int ageParam) {
-        this.age = ageParam;
-    }
 
     @Override
     public String toString() {
         return "Person [name=" + this.name + ", surname=" + this.surname + ", age=" + this.age + "]";
     }
 
-    public long getPersonId() {
-        return this.personId;
-    }
-
-    public void setPersonId(final long personIdParam) {
-        this.personId = personIdParam;
-    }
 
     public String getCity() {
         return this.city;
@@ -73,6 +82,26 @@ public class Person {
 
     public void setCity(final String cityParam) {
         this.city = cityParam;
+    }
+
+
+    public Long getPersonId() {
+        return this.personId;
+    }
+
+
+    public void setPersonId(final Long personIdParam) {
+        this.personId = personIdParam;
+    }
+
+
+    public Integer getAge() {
+        return this.age;
+    }
+
+
+    public void setAge(final Integer ageParam) {
+        this.age = ageParam;
     }
 
 

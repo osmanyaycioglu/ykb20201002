@@ -1,5 +1,6 @@
 package com.training.ykb.rest.design1;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
 
@@ -51,7 +52,8 @@ public class PersonRest {
     }
 
     @PostMapping
-    public Person post(@RequestParam("personId") final long personId) {
+    public Person post(@RequestParam("personId") final long personId,
+                       final HttpServletRequest rqs) {
         return null;
     }
 

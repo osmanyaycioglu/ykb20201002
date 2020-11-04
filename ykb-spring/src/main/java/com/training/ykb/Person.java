@@ -17,7 +17,7 @@ public class Person {
 
     @NotEmpty
     @Size(max = 50, min = 2)
-    @StartWith("test")
+    @StartWith(value = "test", message = "name test ile başlaması gerekiyor")
     private String  name;
 
     @NotEmpty
@@ -25,7 +25,7 @@ public class Person {
     private String  surname;
 
     @NotNull
-    @Max(150)
+    @Max(value = 150, message = "age 150 den büyük olamaz")
     @Min(18)
     private Integer age;
 

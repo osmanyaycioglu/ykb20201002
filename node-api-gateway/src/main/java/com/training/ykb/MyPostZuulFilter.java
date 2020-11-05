@@ -3,11 +3,13 @@ package com.training.ykb;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.cloud.netflix.zuul.filters.support.FilterConstants;
+import org.springframework.stereotype.Component;
 
 import com.netflix.zuul.ZuulFilter;
 import com.netflix.zuul.context.RequestContext;
 import com.netflix.zuul.exception.ZuulException;
 
+@Component
 public class MyPostZuulFilter extends ZuulFilter {
 
     @Override

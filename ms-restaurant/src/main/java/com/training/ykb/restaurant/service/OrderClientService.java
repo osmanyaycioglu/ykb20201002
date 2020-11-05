@@ -9,7 +9,9 @@ import org.springframework.web.client.RestTemplate;
 import com.netflix.appinfo.InstanceInfo;
 import com.netflix.discovery.EurekaClient;
 import com.netflix.discovery.shared.Application;
+import com.training.ykb.common.error.MyRestException;
 import com.training.ykb.restaurant.model.RestaurantOrder;
+import com.training.ykb.restaurant.order.client.IOrderClient;
 
 @Service
 public class OrderClientService {
@@ -20,11 +22,19 @@ public class OrderClientService {
     @Autowired
     private EurekaClient client;
 
+    @Autowired
+    private IOrderClient oc;
+
+    public String orderFeign(final RestaurantOrder ro) throws MyRestException {
+        return this.oc.place(ro);
+    }
+
     public String order(final RestaurantOrder ro) {
         return this.rt.postForObject("http://ORDER/order/place",
                                      ro,
                                      String.class);
     }
+
 
     public String order2(final RestaurantOrder ro) {
         Application applicationLoc = this.client.getApplication("ORDER");

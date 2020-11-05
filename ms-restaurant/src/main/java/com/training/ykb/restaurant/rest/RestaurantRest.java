@@ -30,8 +30,8 @@ public class RestaurantRest {
     @Autowired
     private RabbitTemplate     rabT;
 
-
-    private RestaurantConfig rc;
+    @Autowired
+    private RestaurantConfig   rc;
 
     @PostMapping("/order")
     public String order(@RequestBody final RestaurantOrder ro) throws MyRestException {
@@ -51,7 +51,7 @@ public class RestaurantRest {
 
     @GetMapping("/conf")
     public String configTest() {
-        return this.testStr;
+        return this.rc.getTestStr();
     }
 
 

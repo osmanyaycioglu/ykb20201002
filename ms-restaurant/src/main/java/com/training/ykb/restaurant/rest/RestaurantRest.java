@@ -4,6 +4,8 @@ import java.util.Random;
 
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,6 +23,7 @@ import com.training.ykb.restaurant.service.OrderClientService;
 
 @RestController
 @RequestMapping("/restaurant")
+@RefreshScope
 public class RestaurantRest {
 
     @Autowired
@@ -29,13 +32,16 @@ public class RestaurantRest {
     @Autowired
     private RabbitTemplate     rabT;
 
+    @Value("${my.test.config}")
+    private String             testStr;
+
     @PostMapping("/order")
     public String order(@RequestBody final RestaurantOrder ro) throws MyRestException {
         return this.ocs.orderFeign(ro);
     }
 
     @GetMapping("/test")
-    public String order() {
+    public String test() {
         Notification notificationLoc = new Notification();
         notificationLoc.setMessage("hello world " + (new Random().nextInt()));
         notificationLoc.setNumber("903778236323");
@@ -43,6 +49,11 @@ public class RestaurantRest {
                                  "notify_me",
                                  notificationLoc);
         return "OK";
+    }
+
+    @GetMapping("/conf")
+    public String configTest() {
+        return this.testStr;
     }
 
 

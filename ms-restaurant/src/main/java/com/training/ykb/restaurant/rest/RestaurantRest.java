@@ -4,8 +4,6 @@ import java.util.Random;
 
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,13 +15,13 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.training.ykb.common.error.ErrorObject;
 import com.training.ykb.common.error.MyRestException;
+import com.training.ykb.restaurant.config.RestaurantConfig;
 import com.training.ykb.restaurant.model.Notification;
 import com.training.ykb.restaurant.model.RestaurantOrder;
 import com.training.ykb.restaurant.service.OrderClientService;
 
 @RestController
 @RequestMapping("/restaurant")
-@RefreshScope
 public class RestaurantRest {
 
     @Autowired
@@ -32,8 +30,8 @@ public class RestaurantRest {
     @Autowired
     private RabbitTemplate     rabT;
 
-    @Value("${my.test.config}")
-    private String             testStr;
+
+    private RestaurantConfig rc;
 
     @PostMapping("/order")
     public String order(@RequestBody final RestaurantOrder ro) throws MyRestException {
